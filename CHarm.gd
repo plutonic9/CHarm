@@ -29,12 +29,12 @@ func _ready():
 	plants["rock"] = Color(0.55, 0.27, 0.07, 1)
 	plants["dead"] = Color(0.45, 0, 0, 1 )
 
-	$Dirt.color = plants["dirt"]
-	$Rice.color = plants["rice"]
-	$Wheat.color = plants["wheat"]
-	$Corn.color = plants["corn"]
-	$Rock.color = plants["rock"]
-	$Dead.color = plants["dead"]	
+#	$Dirt.color = plants["dirt"]
+#	$Rice.color = plants["rice"]
+#	$Wheat.color = plants["wheat"]
+#	$Corn.color = plants["corn"]
+#	$Rock.color = plants["rock"]
+#	$Dead.color = plants["dead"]	
 
 #	field.append = {Vector2(0,0): {"type": "dirt"}}
 #

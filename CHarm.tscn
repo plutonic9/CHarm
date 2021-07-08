@@ -1,11 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://CHarm.gd" type="Script" id=1]
+[ext_resource path="res://Field.gd" type="Script" id=2]
 
 [node name="CHarm" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Dirt" type="ColorRect" parent="."]
+[node name="Field" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="Dirt" type="ColorRect" parent="Field"]
+visible = false
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 150.0
@@ -14,7 +19,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Rice" type="ColorRect" parent="."]
+[node name="Rice" type="ColorRect" parent="Field"]
+visible = false
 margin_left = 150.0
 margin_top = 50.0
 margin_right = 250.0
@@ -23,7 +29,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Wheat" type="ColorRect" parent="."]
+[node name="Wheat" type="ColorRect" parent="Field"]
+visible = false
 margin_left = 250.0
 margin_top = 50.0
 margin_right = 350.0
@@ -32,7 +39,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Corn" type="ColorRect" parent="."]
+[node name="Corn" type="ColorRect" parent="Field"]
+visible = false
 margin_left = 350.0
 margin_top = 50.0
 margin_right = 450.0
@@ -41,7 +49,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Rock" type="ColorRect" parent="."]
+[node name="Rock" type="ColorRect" parent="Field"]
+visible = false
 margin_left = 450.0
 margin_top = 50.0
 margin_right = 550.0
@@ -50,7 +59,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Dead" type="ColorRect" parent="."]
+[node name="Dead" type="ColorRect" parent="Field"]
+visible = false
 margin_left = 550.0
 margin_top = 50.0
 margin_right = 650.0
