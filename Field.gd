@@ -5,34 +5,39 @@ extends Node
 # var a = 2
 # var b = "text"
 
-var Tile = preload("res://Tiles.tscn") # Will load when parsing the script.
+var Tile = preload("res://Tile.tscn") # Will load when parsing the script.
+var field
+var rng = RandomNumberGenerator.new()
 
-
+export var fieldWidth: int = 5
+export var fieldHeight: int = 5
+export var numOfRocks: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var field = []
+	field = build_field(fieldWidth, fieldHeight)
+			
+			
+func build_field(width: int, height: int):
+	var result = []
+	rng.randomize()
 	
-	for col in range(5):
-		field.append([])
-		for row in range(5):
-			var type: String
-			if (col % 2 == 0):
-				type = 'dirt'
-			else:
-				type = 'rock'
-				
-			var tile = Tile.instance()
-			tile.set_type(type)
+	for col in range(width):
+		result.append([])
+		for row in range(height):
+			var tile = preload("res://Tile.tscn").instance()
+			result[col].append(tile)
 			tile.position = Vector2(col * 100, row * 100)
 			add_child(tile)
 			
-			
-			
-	# for array(8) { for array(8) { addChild(new Tile('dirt') }
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	for i in range(numOfRocks):
+		var rock_col = rng.randi_range(0, width - 1)
+		var rock_row = rng.randi_range(0, height - 1)
+		
+		if (result[rock_col][rock_row].get_type() == 'rock'):
+			print("already rock")
+	
+		result[rock_col][rock_row].set_type('rock')
+		
+	return result

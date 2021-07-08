@@ -16,9 +16,9 @@ func _ready():
 			field[i].append({"type": "dirt", "alive": false, "time_alive": 0 })
 			
 			
-	for plots in field:	
-		print(plots)
-		print(" ")
+#	for plots in field:	
+#		print(plots)
+#		print(" ")
 		
 		
 			
