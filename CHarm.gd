@@ -1,50 +1,38 @@
 extends Node
 
-var field = []
-var plants  = {} # dictionary for plant types
+var Tile = preload("res://Tile.tscn") # Will load when parsing the script.
+var field
+var rng = RandomNumberGenerator.new()
 
-export var field_x: int = 8
-export var field_y: int = 8
-export var tile_sizeX: int = 100
-export var tile_sizeY: int = 100 
+export var fieldWidth: int = 5
+export var fieldHeight: int = 5
+export var numOfRocks: int = 1
 
+# Called when the node enters the scene tree for the first time.
 func _ready():
+	field = build_field(fieldWidth, fieldHeight)
+			
+			
+func build_field(width: int, height: int):
+	var result = []
+	rng.randomize()
+	
+	for col in range(width):
+		result.append([])
+		for row in range(height):
+			var tile = preload("res://Tile.tscn").instance()
+			result[col].append(tile)
+			tile.position = Vector2(col * 100, row * 100)
+			add_child(tile)
+			
 
-	for i in range(8):
-		field.append([])
-		for j in range(8):
-			field[i].append({"type": "dirt", "alive": false, "time_alive": 0 })
-			
-			
-#	for plots in field:	
-#		print(plots)
-#		print(" ")
+	for i in range(numOfRocks):
+		var rock_col = rng.randi_range(0, width - 1)
+		var rock_row = rng.randi_range(0, height - 1)
 		
+		if (result[rock_col][rock_row].get_type() == 'rock'):
+			print("already rock")
+	
+		result[rock_col][rock_row].set_type('rock')
 		
-			
-	plants["dirt"] = Color(0.96, 0.64, 0.38, 1)
-	plants["rice"] = Color(0.96, 0.96, 0.96, 1)
-	plants["wheat"] = Color(0.96, 0.87, 0.7, 1)
-	plants["corn"] = Color(1, 1, 0, 1)
-	plants["rock"] = Color(0.55, 0.27, 0.07, 1)
-	plants["dead"] = Color(0.45, 0, 0, 1 )
-
-#	$Dirt.color = plants["dirt"]
-#	$Rice.color = plants["rice"]
-#	$Wheat.color = plants["wheat"]
-#	$Corn.color = plants["corn"]
-#	$Rock.color = plants["rock"]
-#	$Dead.color = plants["dead"]	
-
-#	field.append = {Vector2(0,0): {"type": "dirt"}}
-#
-#	print(field)
-	
-	
-	
-	
-	
-
-
-func _process(delta):
-	pass
+	return result
